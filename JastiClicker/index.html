@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/Jasti.css">
+</head>
+<body>
+    <h1>Jasti Empire</h1>
+    <br>
+    <button class="myButton" type="button" onclick="myFunction(1)">Make Money</button>
+    <br>
+    <button class="simpleButton" type="button" disabled="true" id="Jasti" onclick="increaseJasti()">Buy A Jasti   </button>
+    <button class="simpleButton" type="button" id="desc1" onclick="description1()">?</button>       
+    <input class="simpleButton" type="button" disabled="true"value="Number of Jastis: 0" id="jastiButton"></input>
+    <input class="simpleButton" type="button" disabled="true"value="Cost: 20" id="costJasti"></input>
+    <br>
+    <br>
+    <button class="simpleButton" type="button" disabled="true"  id="jastiEmployer"onclick= "increaseJastiEmployer()">Buy a Jasti Employer</button>
+    <button class="simpleButton" type="button" id="desc2" onclick="description2()">?</button>
+    <input class="simpleButton" type="button" disabled="true"value="Number Jasti Employers: 0" id="jastiEmployerButton"></input>
+    <input class="simpleButton" type="button" disabled="true"value="Cost: 5000" id="costJastiEmployer"></input>
+    <br>
+    <br>
+    <input class="simpleButton" type="button" disabled="true" value="Buy a Jasti Office" id="jastiOffice"onclick= "increaseJastiOffice()"></button>
+    <button class="simpleButton" type="button" id="desc3" onclick="description3()">?</button>
+    <input class="simpleButton" type="button" disabled="true"value="Number of Jasti Offices: 0" id="jastiOfficeButton"></input>
+    <input class="simpleButton" type="button" disabled="true"value="Cost: 1000000" id="costJastiOffice"></input>
+    <br>
+    <br>
+    <input class="simpleButton" type="button" disabled="true" value="Buy a Jasti City" id="jastiCity"onclick= "increaseJastiCity()"></button>
+    <button class="simpleButton" type="button" id="desc4" onclick="description4()">?</button>
+    <input class="simpleButton" type="button" disabled="true"value="Number of Jasti Cities: 0" id="jastiCityButton"></input>
+    <input class="simpleButton" type="button" disabled="true"value="Cost: 750000000" id="costJastiCity"></input>
+    <br>
+    <br>
+    <button class="simpleButton" type="button" disabled="true"  id="jastiCountry"onclick= "increaseJastiCountry()">Buy A Jasti Country</button>
+    <button class="simpleButton" type="button" id="desc5" onclick="description5()">?</button>
+    <input class="simpleButton" type="button" disabled="true"value="Number of Jasti Cities: 0" id="jastiCountryButton"></input>
+    <input class="simpleButton" type="button" disabled="true"value="Cost: 100000000000" id="costJastiCountry"></input>
+    <br>
+    <br>
+    <p id="game">0</p>
+    <br>
+    <p>Jasti Upgrades:</p>
+    <button class="simpleButton" type="button" disabled="true"id="betterJasti1"onClick="upgradeJasti1()">Better Bills 1: 250 Dollars</button>
+    <button class="simpleButton" type="button" id="betterJastiOne"onclick= "betterBillsAlert1()">?</button>
+
+    <button class="simpleButton" type="button" disabled="true"id="betterJasti2"onClick="upgradeJasti2()">Better Bills 2: 2000 Dollars</button>
+    <button class="simpleButton" type="button" disabled="true"id="betterJastiTwo"onclick= "betterBillsAlert2()" >?</button>
+
+    <button class="simpleButton" type="button" disabled="true"id="betterJasti3"onClick="upgradeJasti3()">Better Bills 3: 200000 Dollars</button>
+    <button class="simpleButton" type="button" disabled="true"id="betterJastiThree"onclick= "betterBillsAlert3()" >?</button>
+
+    <button class="simpleButton" type="button" disabled="true"id="betterJasti4"onClick="upgradeJasti4()">Better Bills 4: 2000000 Dollars</button>
+    <button class="simpleButton" type="button" disabled="true"id="betterJastiFour"onclick= "betterBillsAlert4()" >?</button>
+
+    <button class="simpleButton" type="button" disabled="true"id="betterJasti5"onClick="upgradeJasti5()">Better Bills 5: 200000000 Dollars</button>
+    <button class="simpleButton" type="button" disabled="true"id="betterJastiFive"onclick= "betterBillsAlert5()" >?</button>
+
+    <button class="simpleButton" type="button" disabled="true"id="betterJasti6"onClick="upgradeJasti6()">Better Bills 6: 2000000000 Dollars</button>
+    <button class="simpleButton" type="button" disabled="true"id="betterJastiSix"onclick= "betterBillsAlert6()" >?</button>
+    <br>
+    <p>Employer Upgrades</p>
+    <button class="simpleButton" type="button" disabled="true"id="betterEmployer"onClick="upgradeEmployer1()">Better Employers: 200000 Dollars</button>
+    <button class="simpleButton" type="button" id="betterJastiEmployer"onclick= "betterEmployerAlert1()" >?</button>
+    <br>
+    <button class="simpleButton" type="button" disabled="true"id="reset"onClick="reset()">Reset The Game?</button>
+    <button class="simpleButton" type="button" id="resetAlert"onclick= "resetAlert()" >?</button>
+    <br>
+    <div id="soulShop" style="visibility:hidden">Soul Shop</div>
+    <br>
+
+    <script src="./src/Display.js"></script>
+    <script src="./src/Jasti.js"></script>
+</body>
+</html>

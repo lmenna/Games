@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Jasti Empire</h1>
+<br>
+<button type="button" onclick="myFunction(10000000000000)">Make Money</button>
+<br>
+<button type="button" disabled="true" id="Jasti" onclick="increaseJasti()">Buy A Jasti</button>
+<button type="button" id="desc1" onclick="description1()">?</button>
+<input type="button" disabled="true"value="Number of Jastis: 0" id="jastiButton"></input>
+<input type="button" disabled="true"value="Cost: 20" id="costJasti"></input>
+<br>
+<button type="button" disabled="true"  id="jastiEmployer"onclick= "increaseJastiEmployer()">Jasti Employer</button>
+<button type="button" id="desc2" onclick="description2()">?</button>
+<input type="button" disabled="true"value="Number Jasti Employers: 0" id="jastiEmployerButton"></input>
+<input type="button" disabled="true"value="Cost: 5000" id="costJastiEmployer"></input>
+<br>
+<input type="button" disabled="true" value="Jasti Office" id="jastiOffice"onclick= "increaseJastiOffice()"></button>
+<button type="button" id="desc3" onclick="description3()">?</button>
+<input type="button" disabled="true"value="Number of Jasti Offices: 0" id="jastiOfficeButton"></input>
+<input type="button" disabled="true"value="Cost: 1000000" id="costJastiOffice"></input>
+<br>
+<input type="button" disabled="true" value="Jasti City" id="jastiCity"onclick= "increaseJastiCity()"></button>
+<button type="button" id="desc4" onclick="description4()">?</button>
+<input type="button" disabled="true"value="Number of Jasti Cities: 0" id="jastiCityButton"></input>
+<input type="button" disabled="true"value="Cost: 750000000" id="costJastiCity"></input>
+<br>
+<button type="button" disabled="true"  id="jastiCountry"onclick= "increaseJastiCountry()">Jasti Country</button>
+<button type="button" id="desc5" onclick="description5()">?</button>
+<input type="button" disabled="true"value="Number of Jasti Cities: 0" id="jastiCountryButton"></input>
+<input type="button" disabled="true"value="Cost: 100000000000" id="costJastiCountry"></input>
+<br>
+<p id="game">0</p>
+<br>
+<p>Jasti Upgrades:</p>
+<button type="button" disabled="true"id="betterJasti1"onClick="upgradeJasti1()">Better Bills 1: 250 Dollars</button>
+<button type="button" id="betterJastiOne"onclick= "betterBillsAlert1()">?</button>
+
+<button type="button" disabled="true"id="betterJasti2"onClick="upgradeJasti2()">Better Bills 2: 2000 Dollars</button>
+<button type="button" disabled="true"id="betterJastiTwo"onclick= "betterBillsAlert2()" >?</button>
+
+<button type="button" disabled="true"id="betterJasti3"onClick="upgradeJasti3()">Better Bills 3: 200000 Dollars</button>
+<button type="button" disabled="true"id="betterJastiThree"onclick= "betterBillsAlert3()" >?</button>
+
+<button type="button" disabled="true"id="betterJasti4"onClick="upgradeJasti4()">Better Bills 4: 2000000 Dollars</button>
+<button type="button" disabled="true"id="betterJastiFour"onclick= "betterBillsAlert4()" >?</button>
+
+<button type="button" disabled="true"id="betterJasti5"onClick="upgradeJasti5()">Better Bills 5: 200000000 Dollars</button>
+<button type="button" disabled="true"id="betterJastiFive"onclick= "betterBillsAlert5()" >?</button>
+
+<button type="button" disabled="true"id="betterJasti6"onClick="upgradeJasti6()">Better Bills 6: 2000000000 Dollars</button>
+<button type="button" disabled="true"id="betterJastiSix"onclick= "betterBillsAlert6()" >?</button>
+<br>
+<p>Employer Upgrades</p>
+<button type="button" disabled="true"id="betterEmployer"onClick="upgradeEmployer1()">Better Employers: 200000 Dollars</button>
+<button type="button" id="betterJastiEmployer"onclick= "betterEmployerAlert1()" >?</button>
+<br>
+
+<button type="button" disabled="true"id="reset"onClick="reset()">Reset The Game?</button>
+<button type="button" id="resetAlert"onclick= "resetAlert()" >?</button>
+<br>
+<div id="soulShop" style="visibility:hidden">Soul Shop</div>
+<br>
+
+<script>
+	var dollars = 0;
+	var jastiCost = 20;
+	var jastiCount = 2000000000;
+	var betterJasti1 = 0;
+	var betterBills2 = 0;
+	var betterBills3 = 0;
+	var betterBills4 = 0;
+	var betterBills5 = 0;
+	var betterBills6 = 0;
+	var jastiMult = 1;
+	
+	var employerCost = 5000;
+	var employerCount = 0;
+	var betterEmployer1 = 0;
+	var employerMult = 1;
+	
+	var officeCost = 1000000;
+	var officeCount = 0;
+	var officeMult = 1;
+	
+	var cityCost = 750000000;
+	var cityCount = 0;
+	var cityMult = 1;
+	
+	var countryCost = 100000000000;
+	var countryCount = 100;
+	var countryMult = 1;
+	
+	var souls = 0;
+	var resetMult = 1;
+	var resetCount = 0;
+
+	updateDisplay();
+	
+//The og function
+	function myFunction(y){
+    	var gain = Math.round(y*resetMult*100)/100;
+		dollars += Math.round(gain*10)/10;
+		dollars = Math.round(dollars *10)/10;
+		updateDisplay();
+	}
+//Jasti Stuff
+	function increaseJasti(){
+		jastiCount++;
+		dollars -= jastiCost;
+		dollars = Math.round (dollars);	
+		jastiCost = Math.round(jastiCost*1.1);
+		console.log("Jasti Cost: " + jastiCost);
+		console.log("Jasti Count: " + jastiCount);
+		updateDisplay();
+	}
+	function description1(){
+		alert("Produces Money.\nA dilligent worker that will print counterfeit dollars for you on his printer. They are very loyal and will do whatever you ask. However, they are never as good as they could be due to stupidity. The problem is not that the Jastis are dumb. They are actually very intelligent, but they follow the orders of a complete idiot. Why do Jastis follow you? Because they are nice.");
+	}	
+//Jasti Employer Stuff
+	function increaseJastiEmployer(){
+		employerCount++;
+		dollars -=Math.round(employerCost);
+		employerCost = Math.round(employerCost*1.25 *100)/100;
+		console.log("Jasti Employer Cost: " + employerCost);
+		console.log("Jasti Employer Count: " + employerCount);
+		updateDisplay();
+	}
+	function description2(){
+		alert("Produces Jastis.\nAn especially intellegent Jasti that works to seek out more Jastis to print money. It costs more to higher them because of they have better credentials.");
+	}
+//Jasti Office Stuff
+	function increaseJastiOffice(){
+		dollars-= officeCost;
+		officeCost =Math.round(1.5*officeCost);
+		officeCount++;
+		updateDisplay();
+		}
+		function increaseJastiOffice(){
+		dollars-= officeCost;
+		officeCost =Math.round(1.5*officeCost);
+		officeCount++;
+		updateDisplay();
+		}
+		function description3(){
+			alert("Produces Jasti Employers.\nThe pinnacle of modern architecture. A state of the art office building that doesn't just have offices, but apartments as well. An office this nice will draw in Jastis from miles Away!  It even has a dog.");	
+		}
+	function increaseJastiCity(){
+		dollars-= cityCost;
+		cityCost =Math.round(1.5*cityCost);
+		cityCount++;
+		updateDisplay();
+		}
+		function increaseJastiOffice(){
+		dollars-= officeCost;
+		officeCost =Math.round(1.5*officeCost);
+		officeCount++;
+		updateDisplay();
+		}
+		function description3(){
+			alert("Produces Jasti Employers.\nThe pinnacle of modern architecture. A state of the art office building that doesn't just have offices, but apartments as well. An office this nice will draw in Jastis from miles Away!  It even has a dog.");	
+		}
+	function description4(){
+	alert("Produces Jasti Offices\nAn entire city full of Jasti Offices with thousands upon thousands of Jastis. God help us all.")
+	}
+//Jasti Country Stuff
+	function increaseJastiCountry(){
+		dollars-= countryCost;
+		countryCost =Math.round(2*countryCost);
+		countryCount++;
+		updateDisplay();
+	}
+	function description5(){
+		alert("Produces Jasti Cities.\nAn independent country that will conquer other lands in order to expand the jasti empire. This is the best way to not only generate revenue, but also increase power.");
+	}
+	//upgrade Jastis 1	
+	function upgradeJasti1(){
+		dollars -= 200;
+		betterJasti1 = 1;
+		jastiMult = 2;
+	}	
+	function betterBillsAlert1(){
+		alert("Jastis printer 2 dollar bills instead.\nAfter hours upon hours of thought, you made a revelation. If you print 2 dollars bills rather than one, you make double the money for free! You realise how much of a genius you are as you ask the Jastis to start printing 2 dollar bills instead.");
+	}
+	//better Jastis 2
+	function upgradeJasti2(){
+		dollars -= 2000;
+		betterBills2 = 1;
+		jastiMult = 5;
+	}	
+	function betterBillsAlert2(){
+		alert("Jastis print 5 dollar bills instead.\nMinutes turn into hours and hours turn into days as you realise there is no easy way to make money. You think about what a terrible grind it is to print more and more 2 dollar bills. After long and painful days of thinking you have yet another revelation. You realise that if you want to make more money, you can print five dollar bills instead! You quickly tell the Jastis of you new discovery and ask them to print 5 dollar bills.");
+	}
+	//better Jastis 3
+	function upgradeJasti3(){
+		dollars -= 200000;
+		betterBills3 = 1
+		jastiMult = 20;
+	}	
+	function betterBillsAlert3(){
+		alert("Jastis print 20 dollars instead.\nAfter days of long and hard though, you feel like quitting and handing your job down to a higher ranks Jasti. You feel like you've thought of everything from ripping money in half to make 2 bills and printing 10 dollar bills, but those didn't seem to work in your mind. However, when leaving a generous 20 dollar tip for a waiter, you realise something. If you used twenty dollar bills instead, things would go much faster.");
+	}
+	//better Jastis 4
+	function upgradeJasti4(){
+		dollars -= 2000000;
+		betterBills4 = 1
+		jastiMult = 50;
+	}	
+	function betterBillsAlert4(){
+		alert("Jastis print 50 dollar bills instead.\nThis one actually wasn't too difficult to think of. You realise the pattern that if you just print bigger bills it makes more money. You're starting to learn.");
+	}
+	
+	//Better Jastis 5
+	function upgradeJasti5(){
+		dollars -= 200000000;
+		betterBills5 = 1
+		jastiMult =100;
+	}	
+	function betterBillsAlert5(){
+		alert("Jastis print 100 dollar bills instead.\nThis one sure was tough to think of. It took you a very long time to think of using 100 dollar bills, but now you understand the patter. You realise that if you simply write bigger numbers on the bills, it will be worth more money.");
+	}
+	//Better Jastis 6
+	function upgradeJasti6(){
+		dollars -= 2000000000;
+		betterBills6 = 1
+		jastiMult =1000;
+	}	
+	function betterBillsAlert6(){
+		alert("Jastis print 1000 dollar bills instead.\nPrinting bigger bills sure is easy. You wonder why you had so much trouble thinking these ideas up before. These 1000 dollar bills are genius. Also, they actually work because Jastis control much of the world economy.");
+	}
+//upgrade employer
+	function betterEmployerAlert1(){
+		alert("You buy employers better equipment so they can search more dangerous parts of the world to find Jastis. Doubles jasti production.");
+	}
+	function upgradeEmployer1(){
+		dollars -= 100000;
+		betterEmployer1 = 1;
+		employerMult = 2;
+	}
+	function reset(){
+		countryCount = 0;
+		cityCount = 0;
+		officeCount = 0;
+		employercount = 0;
+		dollars = 0;
+		souls = Math.pow(jastiCount,1/5);	
+		jastiCount = 0;
+		resetMult = 1 + (souls/100);
+		resetCount++;
+		updateDisplay();
+		console.log(souls);
+		console.log(resetMult);
+	}
+	function resetAlert(){
+		var projectedSouls = Math.pow(jastiCount,1/5);
+		var actualSouls = Math.round(projectedSouls);
+		console.log(projectedSouls);
+		var projectedMult = (actualSouls/100 +1);
+		var actualMult = projectedMult.toFixed(2);
+		console.log(actualMult);
+		alert("Your Jastis will rise up and destroy the entire planet. In doing so, they aquire enough power to send another jasti to a different planet. Your money and jastis will be reset, but will be left with " + actualSouls + " human souls which will power your next jastis giving you a " + actualMult + "x multiplier. \n You must have at least 1 billion Jastis to take over the world and reset.");
+	}	
+//display stuff
+	function updateDisplay(){
+		//jastis
+		if (dollars <= jastiCost){
+			document.getElementById("Jasti").disabled = true;
+		}
+		else{
+			document.getElementById("Jasti").disabled = false;
+		}
+		if (jastiCount > 0){
+			document.getElementById("jastiButton").disabled = false;
+			document.getElementById("costJasti").disabled = false;	
+			document.getElementById("jastiButton").value = ("Number of Jastis: " + (jastiCount));
+			document.getElementById("costJasti").value = ("Price: " + (jastiCost));
+		}
+		else{
+			document.getElementById("jastiButton").disabled = true;
+			document.getElementById("costJasti").disabled = true;
+		}
+//Jasti Employers
+		if (dollars <= employerCost){
+			document.getElementById("jastiEmployer").disabled = true;
+		}
+		else{
+			document.getElementById("jastiEmployer").disabled = false;
+		}
+		if (jastiCount > 0){
+			document.getElementById("jastiEmployerButton").style.visibility="visible"
+			document.getElementById("costJastiEmployer").style.visibility="visible"
+			document.getElementById("jastiEmployerButton").value = ("Number of Jasti Employers: " + (employerCount));
+			document.getElementById("costJastiEmployer").value = ("Price: " + (employerCost));
+			document.getElementById("desc2").disabled = false;
+		}
+		if (jastiCount >= 1){
+			document.getElementById("jastiEmployer").style.visibility ="visible"
+			document.getElementById("jastiEmployerButton").style.visibility="visible";
+			document.getElementById("costJastiEmployer").style.visibility="visible";
+			document.getElementById("desc2").style.visibility ="visible";	
+			document.getElementById("jastiEmployerButton").disabled = false;
+			document.getElementById("costJastiEmployer").disabled = false;			
+		}
+		else{
+			document.getElementById("jastiEmployer").style.visibility ="hidden"
+			document.getElementById("jastiEmployerButton").style.visibility="hidden";
+			document.getElementById("costJastiEmployer").style.visibility="hidden";
+			document.getElementById("desc2").style.visibility ="hidden";	
+			document.getElementById("jastiEmployerButton").disabled = true;
+			document.getElementById("costJastiEmployer").disabled = true;				
+		}
+//Jasti Office
+		if (employerCount >= 1){
+			document.getElementById("jastiOffice").style.visibility = "visible"
+			document.getElementById("jastiOfficeButton").disabled = false;
+			document.getElementById("jastiOfficeButton").style.visibility="visible"	
+			document.getElementById("costJastiOffice").disabled = false;
+			document.getElementById("costJastiOffice").style.visibility="visible"
+			document.getElementById("desc3").style.visibility = "visible"
+		}
+		else{
+			document.getElementById("jastiOffice").style.visibility = "hidden"	
+			document.getElementById("desc3").style.visibility = "hidden"	
+			document.getElementById("jastiOfficeButton").style.visibility="hidden"
+			document.getElementById("costJastiOffice").style.visibility="hidden"
+		}
+		if(dollars >= officeCost){
+			document.getElementById("jastiOffice").disabled=false;	
+		}
+		else{
+			document.getElementById("jastiOffice").disabled=true;
+		}
+		if (officeCount >= 1){
+			document.getElementById("costJastiOffice").value = ("Price: " + (officeCost));
+			document.getElementById("jastiOfficeButton").value = ("Number of Jasti Offices: " + (officeCount));
+		}
+//Jasti City
+		if (officeCount >= 1){
+			document.getElementById("jastiCity").style.visibility = "visible"
+			document.getElementById("desc4").style.visibility = "visible"
+			document.getElementById("jastiCityButton").style.visibility = "visible"
+			document.getElementById("jastiCityButton").disabled = false;
+			document.getElementById("costJastiCity").style.visibility = "visible"
+			document.getElementById("costJastiCity").disabled = false;
+			document.getElementById("jastiCityButton").value = "Number of Jasti Cities: " + cityCount;
+			document.getElementById("costJastiCity").value = "Price: " + cityCost;
+		}
+		else{
+			document.getElementById("jastiCity").style.visibility = "hidden"
+			document.getElementById("desc4").style.visibility = "hidden"
+			document.getElementById("jastiCityButton").style.visibility = "hidden"
+			document.getElementById("costJastiCity").style.visibility = "hidden"
+		}
+		if (dollars >= cityCost){
+			document.getElementById("jastiCity").disabled=false;
+		}
+		else{
+			document.getElementById("jastiCity").disabled=true;		
+		}
+		if (cityCount >= 1){
+			document.getElementById("jastiCountry").style.visibility = "visible"
+			document.getElementById("desc5").style.visibility = "visible"
+			document.getElementById("jastiCountryButton").style.visibility = "visible"
+			document.getElementById("jastiCountryButton").disabled = false;
+			document.getElementById("costJastiCountry").style.visibility = "visible"
+			document.getElementById("costJastiCountry").disabled = false;
+			document.getElementById("jastiCountryButton").value = "Number of Jasti Cities: " + countryCount;
+			document.getElementById("costJastiCountry").value = "Price: " + countryCost;
+		}
+		else{
+			document.getElementById("jastiCountry").style.visibility = "hidden"
+			document.getElementById("desc5").style.visibility = "hidden"
+			document.getElementById("jastiCountryButton").style.visibility = "hidden"
+			document.getElementById("costJastiCountry").style.visibility = "hidden"
+		}
+		if (dollars >= countryCost){
+			document.getElementById("jastiCountry").disabled=false;
+		}
+		else{
+			document.getElementById("jastiCountry").disabled=true;		
+		}
+//Jasti Country
+//Jasti upgrades		
+		//Better Jastis 1
+		if (dollars < 250 || betterJasti1 >= 1){
+			document.getElementById("betterJasti1").disabled = true;
+		}
+		else{
+			document.getElementById("betterJasti1").disabled = false;
+		}
+		//Better Jastis 2		
+		if(betterJasti1>=1){
+			document.getElementById("betterJasti1").style.visibility="hidden"
+			document.getElementById("betterJastiOne").style.visibility="hidden"
+			document.getElementById("betterJastiTwo").style.visibility="visible"
+			document.getElementById("betterJasti2").style.visibility="visible"
+			document.getElementById("betterJastiTwo").disabled = false;
+		}
+		else{
+			document.getElementById("betterJastiTwo").style.visibility="hidden"
+			document.getElementById("betterJasti2").style.visibility="hidden"
+		}
+		if (dollars < 2000 || betterBills2 >= 1){
+			document.getElementById("betterJasti2").disabled = true;
+		}
+		else{
+			document.getElementById("betterJasti2").disabled = false;
+		}
+		if(betterBills2>=1){
+			document.getElementById("betterJastiTwo").style.visibility="hidden"
+			document.getElementById("betterJasti2").style.visibility="hidden"
+		}
+
+		if (betterBills2>=1){
+			document.getElementById("betterJastiTwo").style.visibility="hidden"
+			document.getElementById("betterJasti2").style.visibility="hidden"
+		}
+		//Better Jastis 3
+		if(betterBills2 >= 1){
+			document.getElementById("betterJasti2").style.visibility="hidden"
+			document.getElementById("betterJastiTwo").style.visibility="hidden"
+			document.getElementById("betterJastiThree").style.visibility="visible"
+			document.getElementById("betterJasti3").style.visibility="visible"
+			document.getElementById("betterJastiThree").disabled = false;
+		}
+		else{
+			document.getElementById("betterJastiThree").style.visibility="hidden"
+			document.getElementById("betterJasti3").style.visibility="hidden"
+		}
+		if (dollars < 200000 || betterJasti2 >= 1){
+			document.getElementById("betterJasti3").disabled = true;
+		}
+		else{
+			document.getElementById("betterJasti3").disabled = false;
+		}
+		if(betterBills3>=1){
+			document.getElementById("betterJastiThree").style.visibility="hidden"
+			document.getElementById("betterJasti3").style.visibility="hidden"
+		}
+		//Better Jastis 4
+		if(betterBills3 >= 1){
+			document.getElementById("betterJasti3").style.visibility="hidden"
+			document.getElementById("betterJastiThree").style.visibility="hidden"
+			document.getElementById("betterJastiFour").style.visibility="visible"
+			document.getElementById("betterJasti4").style.visibility="visible"
+			document.getElementById("betterJastiFour").disabled = false;
+		}
+		else{
+			document.getElementById("betterJastiFour").style.visibility="hidden"
+			document.getElementById("betterJasti4").style.visibility="hidden"
+		}
+		if (dollars < 2000000 || betterJasti3 >= 1){
+			document.getElementById("betterJasti4").disabled = true;
+		}
+		else{
+			document.getElementById("betterJasti4").disabled = false;
+		}
+		if(betterBills4>=1){
+			document.getElementById("betterJastiFour").style.visibility="hidden"
+			document.getElementById("betterJasti4").style.visibility="hidden"
+		}
+		//better Jastis 5
+		if(betterBills4 >= 1){
+			document.getElementById("betterJasti4").style.visibility="hidden"
+			document.getElementById("betterJastiFour").style.visibility="hidden"
+			document.getElementById("betterJastiFive").style.visibility="visible"
+			document.getElementById("betterJasti5").style.visibility="visible"
+			document.getElementById("betterJastiFive").disabled = false;
+		}
+		else{
+			document.getElementById("betterJastiFive").style.visibility="hidden"
+			document.getElementById("betterJasti5").style.visibility="hidden"
+		}
+		if (dollars < 200000000 || betterJasti4 >= 1){
+			document.getElementById("betterJasti5").disabled = true;
+		}
+		else{
+			document.getElementById("betterJasti5").disabled = false;
+		}
+		if(betterBills5>=1){
+			document.getElementById("betterJastiFive").style.visibility="hidden"
+			document.getElementById("betterJasti5").style.visibility="hidden"
+		}
+		//better Jastis 6
+		if(betterBills5 >= 1){
+			document.getElementById("betterJasti5").style.visibility="hidden"
+			document.getElementById("betterJastiFive").style.visibility="hidden"
+			document.getElementById("betterJastiSix").style.visibility="visible"
+			document.getElementById("betterJasti6").style.visibility="visible"
+			document.getElementById("betterJastiSix").disabled = false;
+		}
+		else{
+			document.getElementById("betterJastiSix").style.visibility="hidden"
+			document.getElementById("betterJasti6").style.visibility="hidden"
+		}
+		if (dollars < 2000000000 || betterJasti5 >= 1){
+			document.getElementById("betterJasti6").disabled = true;
+		}
+		else{
+			document.getElementById("betterJasti6").disabled = false;
+		}
+		if(betterBills6>=1){
+			document.getElementById("betterJastiSix").style.visibility="hidden"
+			document.getElementById("betterJasti6").style.visibility="hidden"
+		}
+//Employer Upgrades
+		//Better Employers 1
+		if(employerCount >= 1){
+			document.getElementById("betterEmployer").style.visibility="visible"
+			document.getElementById("betterJastiEmployer").style.visibility="visible"
+		}
+		else{
+			document.getElementById("betterEmployer").style.visibility="hidden"
+			document.getElementById("betterJastiEmployer").style.visibility="hidden"
+		}
+		if(dollars >= 100000){
+			document.getElementById("betterEmployer").disabled=false;
+			document.getElementById("betterJastiEmployer").disabled=false;
+		}
+		else{
+			document.getElementById("betterEmployer").disabled=true;
+			document.getElementById("betterJastiEmployer").disabled=false;
+		}
+		if (betterEmployer1 >= 1){
+			document.getElementById("betterEmployer").style.visibility = "hidden"
+			document.getElementById("betterJastiEmployer").style.visibility = "hidden"
+		}	
+//resetting
+		if (jastiCount >= 1000000000){
+			document.getElementById("reset").disabled=false;
+		}
+		else{
+			document.getElementById("reset").disabled= true;
+		}
+		if (jastiCount >= 100000000){
+			document.getElementById("reset").style.visibility="visible";
+			document.getElementById("resetAlert").style.visibility="visible";
+		}
+		else{
+			document.getElementById("reset").style.visibility="hidden";
+			document.getElementById("resetAlert").style.visibility="hidden";			
+		}
+		if(resetCount >= 1){
+		document.getElementById("soulShop").style.visibility = "visible";
+		}
+		else{
+		document.getElementById("soulShop").style.visibility = "hidden";
+		}
+//don't touch this boy 		
+		document.getElementById("game").innerHTML = dollars;
+	}
+	
+	var ctr = 1;
+	
+	function updateGame(){
+		ctr++;
+		if(ctr >= 20){
+			var jastiDollars = Math.round(jastiCount*jastiMult*resetMult*10)/10;
+			dollars += Math.round(jastiDollars);
+			jastiCount += Math.round(employerCount*employerMult*resetMult);
+			employerCount += Math.round(officeCount * officeMult * resetMult);
+			officeCount += Math.round(cityCount * cityMult*resetMult);
+			cityCount += Math.round(countryCount * countryMult*resetMult);
+			ctr = 1;
+		}
+		updateDisplay();
+	}
+	
+	setInterval(updateGame, 25);
+    	
+
+</script>
+<script>
+
+</script>
+</body>
+</html>

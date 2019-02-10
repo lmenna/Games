@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+container{	position: absolute
+			background-color: black
+			left: 50%
+}
+</style>
+</head>
+
+<div id='container'></div>
+<canvas id="canvas" width="640px" height="640px"></canvas>
+
+<script type ="text/javascript">
+
+particle = {
+  x: 0,
+  y: 0,
+  dx: 0,
+  dy: 0
+};
+
+var width = 640;
+var height = 640;
+var mousex, mousey;
+var NUM_PARTICLES = 200000;
+var friction = 0.85;
+var gravity = 0;
+var startingSpeedMult = 0.5;
+var useComplexGravity = true;
+var useAirResistance = false;
+var mouseEffectDistance = 80;
+var speedLimit = 8;
+list = [];
+
+function init() {
+	var container = document.getElementById("container");
+	var canvas = document.getElementById("canvas");
+	
+	ctx = canvas.getContext("2d");
+	canvas.width = width;
+	canvas.height = height;
+
+	for (i = 0; i < NUM_PARTICLES; i++) {
+		p = Object.create(particle);
+		p.x = getRandomInt(0, width);
+		p.y = getRandomInt(0, height);
+		p.dx = startingSpeedMult*(Math.random()-0.5);
+		p.dy = startingSpeedMult*(Math.random()-0.5);
+
+		list[i] = p;
+	}
+
+	window.addEventListener("mousemove", function(event) {
+		bound = container.getBoundingClientRect();
+		mousex = event.clientX - bound.left;
+		mousey = event.clientY - bound.top;
+	})
+
+	container.appendChild(canvas);
+}
+
+function step() {
+	//physics updates
+	var newX;
+	var newY;
+	var accel = [];
+	var dist;
+	for (i = 0; i < NUM_PARTICLES; i++) {
+		p = list[i];
+		dist = distance(p.x, p.y, mousex, mousey);
+		
+		//update velocity for gravity
+		p.dy+=gravity;
+		
+		//...and mouse movements
+		if(dist <= mouseEffectDistance){
+			accel = awayAcceleration(p.x, p.y, mousex, mousey, dist)
+			p.dx += accel[0];
+			p.dy += accel[1];
+		}
+
+		//enforce global speed limit
+		if(p.dx > speedLimit) p.dx = speedLimit;
+		else if(p.dx < -speedLimit) p.dx = -speedLimit;
+		
+		if(p.dy > speedLimit) p.dy = speedLimit;
+		else if(p.dy < -speedLimit) p.dy = -speedLimit;
+		
+		//enforce air resistance if applicable
+		if(useAirResistance){
+			p.dx *= 0;
+			p.dy *= 0;
+		}
+		//update position based on new velocity
+		newX = p.x+p.dx;
+		newY = p.y+p.dy;
+		
+		//boundary check
+		if(newX > width-1){
+			newX = bouncePosition(p.x, p.dx, width-1);
+			p.dx = -friction*p.dx;
+		}
+		else if(newX < 0){
+			newX = bouncePosition(p.x, p.dx, 0);
+			p.dx = -friction*p.dx;
+		}
+		if(newY > height-1){
+			newY = bouncePosition(p.y, p.dy, height-1);
+			p.dy = -friction*p.dy;
+		}
+		else if(newY < 0){
+			newY = bouncePosition(p.y, p.dy, 0);
+			p.dy = -friction*p.dy;
+		}
+		
+		//update actual particle position data
+		p.x = newX;
+		p.y = newY;
+	}
+
+	//graphics updates
+	newFrame = ctx.createImageData(width, height);
+	var particleBaseAddress;
+	var xpos, ypos;
+	
+	for (i = 0; i < NUM_PARTICLES; i++) {
+		p = list[i];
+		xpos = Math.round(p.x);
+		ypos = Math.round(p.y);
+		particleBaseAddress = (xpos+width*ypos)*4;
+		
+		//update each 4-value block of graphical data to respective color values (messy)
+		newFrame.data[particleBaseAddress] = 0;
+		newFrame.data[particleBaseAddress+1] = 0;
+		newFrame.data[particleBaseAddress+2] = 0;
+		newFrame.data[particleBaseAddress+3] = 255;
+	}
+	
+	ctx.putImageData(newFrame, 0, 0);
+	requestAnimationFrame(step);
+}
+
+function getRandomInt(min, max){
+	return parseInt(Math.random()*(max - min + 1) + min);
+}
+
+function distance(x1, y1, x2, y2){
+	return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2))
+
+}
+
+function awayAcceleration(x1, y1, x2, y2, dist){
+	var accelVector = [0,0];
+	
+	if(useComplexGravity){
+		accelVector[0] = -200/Math.pow(dist+1, 3)*((x2-x1)/dist+0.1);
+		accelVector[1] = -200/Math.pow(dist+1, 3)*((y2-y1)/dist+0.1);
+	}
+	else{
+		accelVector[0] = -0.05/Math.sqrt(dist+1)*((x2-x1));
+		accelVector[1] = -0.05/Math.sqrt(dist+1)*((y2-y1));
+	}
+	return accelVector;
+	//return Math.sign(coord2-coord1)*1/Math.sqrt(distance(coord1, 0, coord2, 0)+1);
+}
+
+function bouncePosition(x, dx, bound){
+	if(x+dx > bound){
+		return -(dx-bound);
+	}
+	else{
+		return(-dx-x+bound)
+	}
+}
+
+	init();
+	step();
+
+</script>
+
+</html>
